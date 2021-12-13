@@ -5,9 +5,14 @@ from pprint import pprint
 from pathlib import Path
 from urllib.parse import urlparse
 import telegram
+import os
+import random
+
+random_image = random.choice(os.listdir('images'))
 
 bot = telegram.Bot(token='5023274041:AAF-Hqol0GIXDYTknbgv4Ts76lWnTbGRUP0')
 bot.send_message(chat_id='@deadinsidamsyda', text="я дед инсайд, мне девять лет, я хочу в психо кидс")
+bot.send_document(chat_id='@deadinsidamsyda', document=open(f'images\{random_image}', 'rb'))
 
 def install_images(link, filename, params=''):
     url = link
