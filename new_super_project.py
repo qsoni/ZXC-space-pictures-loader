@@ -7,12 +7,10 @@ from urllib.parse import urlparse
 import telegram
 import os
 import random
+import time
+from dotenv import load_dotenv
 
-random_image = random.choice(os.listdir('images'))
 
-bot = telegram.Bot(token='5023274041:AAF-Hqol0GIXDYTknbgv4Ts76lWnTbGRUP0')
-bot.send_message(chat_id='@deadinsidamsyda', text="я дед инсайд, мне девять лет, я хочу в психо кидс")
-bot.send_document(chat_id='@deadinsidamsyda', document=open(f'images\{random_image}', 'rb'))
 
 def install_images(link, filename, params=''):
     url = link
@@ -24,7 +22,7 @@ def install_images(link, filename, params=''):
 
 def epic_nasa_images():
     params = {
-        'api_key': 'NjCIHo8fhBS3PyclGht8EtBbe2VGrJoK9jk2dh4e'
+        'api_key': nasa_token
     }
     q = 0
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
@@ -40,7 +38,7 @@ def epic_nasa_images():
         q = q + 1
         filename_two = f'images/nasa_epic_photo{q}.jpeg'
         params = {
-            'api_key': 'NjCIHo8fhBS3PyclGht8EtBbe2VGrJoK9jk2dh4e'
+            'api_key': nasa_token
         }
         install_images(epic_url, filename_two, params)
 
@@ -59,7 +57,7 @@ def nasa_images():
     params = {
         'thumbs': True,
         'count': '5',
-        'api_key': 'NjCIHo8fhBS3PyclGht8EtBbe2VGrJoK9jk2dh4e'
+        'api_key': nasa_token
     }
     z = 0
     url = 'https://api.nasa.gov/planetary/apod'
@@ -86,13 +84,26 @@ def fetch_spacex_last_launch():
 
 
 Path("images").mkdir(parents=True, exist_ok=True)
-nasa_images()
-epic_nasa_images()
-picture_resolution()
-fetch_spacex_last_launch()
+#nasa_images()
+#epic_nasa_images()
+#picture_resolution()
+#fetch_spacex_last_launch()
 
 
+load_dotenv()
+time_sec = os.getenv('TIME_S')
+bot_id = os.getenv('BOT_ID')
+nasa_token = os.getenv('NASA_TOKEN')
+chat_id = os.getenv('CHAT_ID')
 
+
+bot = telegram.Bot(token=bot_id)
+
+while True:
+    random_image = random.choice(os.listdir('images'))
+    bot.send_document(chat_id=chat_id, document=open(f'images\{random_image}', 'rb'))
+    bot.send_message(chat_id=chat_id, text="я дед инсайд, мне девять лет, я хочу в психо кидс")
+    time.sleep(int(time_sec))
 
 
 
