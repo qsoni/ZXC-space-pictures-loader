@@ -19,6 +19,7 @@ def picture_resolution():
 
 
 if __name__ == '__main__':
+    Path("images").mkdir(parents=True, exist_ok=True)
     fetch_spacex_last_launch
     epic_nasa_images()
     nasa_images()
@@ -36,4 +37,4 @@ if __name__ == '__main__':
         bot.send_message(chat_id=chat_id, text="я дед инсайд, мне девять лет, я хочу в психо кидс")
         time.sleep(int(time_sec))
 
-Path("images").mkdir(parents=True, exist_ok=True)
+
