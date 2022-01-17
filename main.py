@@ -11,13 +11,6 @@ import time
 from dotenv import load_dotenv
 
 
-def picture_resolution():
-    your_link = 'https://apod.nasa.gov/apod/image/2111/NGC3314_HubbleOstling_960.jpg'
-    o = urlparse(your_link)
-    y = splitext(o.path)[1]
-    print(y)
-
-
 if __name__ == '__main__':
     Path("images").mkdir(parents=True, exist_ok=True)
     fetch_spacex_last_launch
