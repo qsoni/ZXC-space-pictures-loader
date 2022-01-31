@@ -4,9 +4,8 @@ from install_image import install_image
 
 def fetch_epic_nasa_images(nasa_token):
     params = {
-        'api_key': nasa_token 
+        'api_key': nasa_token
     }
-    count_links = 0
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     response = requests.get(url, params=params)
     response.raise_for_status()
