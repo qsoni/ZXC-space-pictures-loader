@@ -1,40 +1,27 @@
 import requests
-from dotenv import load_dotenv
-import os
-from pathlib import Path
-
-def install_image(link, filename, params=''):
-    url = link
-    response = requests.get(url, params=params)
-    response.raise_for_status()
-    with open(filename, 'wb') as file:
-        file.write(response.content)
+from install_image import install_image
 
 
-def epic_nasa_images():
+def fetch_epic_nasa_images(nasa_token):
     params = {
-        'api_key': nasa_token
+        'api_key': nasa_token 
     }
     count_links = 0
     url = 'https://api.nasa.gov/EPIC/api/natural/images'
     response = requests.get(url, params=params)
     response.raise_for_status()
     epic_nasa = response.json()
-    for epic_image in epic_nasa:
+    for number, epic_image in enumerate(epic_nasa):
         epic_date = epic_image['date'].split()[0]
         url_date = epic_date.replace('-', '/')
         url_image = epic_image['image']
         epic_url = f'https://api.nasa.gov/EPIC/archive/natural/{url_date}/png/{url_image}.png'
         epic_image['image']
-        count_links = count_links + 1
-        filename_two = f'images/nasa_epic_photo{q}.jpeg'
-        params = {
-            'api_key': nasa_token
-        }
-        install_image(epic_url, filename_two, params)
+        filepath = f'images/nasa_epic_photo{number}.jpeg'
+        install_image(epic_url, filepath, params)
 
 
-def nasa_images():
+def fetch_nasa_images(nasa_token):
     params = {
         'thumbs': True,
         'count': '5',
@@ -45,12 +32,10 @@ def nasa_images():
     response = requests.get(url, params=params)
     response.raise_for_status()
     nasa = response.json()
-    for nasa_image in nasa:
-        nasa_url = nasa_image['url']
-        count_links = count_links + 1
-        filename_one = f'images/nasa_photo{z}.jpeg'
-        install_image(nasa_url, filename_one)
+    for number, launch in enumerate(nasa):
+        filepath = f'images/nasa_photo{number}.jpeg'
+        install_image(launch['url'],filepath)
 
-Path("images").mkdir(parents=True, exist_ok=True)
-load_dotenv()
-nasa_token = os.getenv('NASA_TOKEN')
+
+
+
