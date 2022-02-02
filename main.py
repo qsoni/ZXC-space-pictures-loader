@@ -11,12 +11,12 @@ from dotenv import load_dotenv
 
 if __name__ == '__main__':
     load_dotenv()
-    time_sec = os.getenv('TIME_S')
-    bot_id = os.getenv('BOT_ID')
-    chat_id = os.getenv('CHAT_ID')
+    seconds_delay = os.getenv('SECONDS_DELAY')
+    telegram_bot_id = os.getenv('TELEGRAM_BOT_ID')
+    telegram_chat_id = os.getenv('TELEGRAM_CHAT_ID')
     nasa_token = os.getenv('NASA_TOKEN')
 
-    bot = telegram.Bot(token=bot_id)
+    bot = telegram.Bot(token=telegram_bot_id)
     Path("images").mkdir(parents=True, exist_ok=True)
     fetch_spacex_launch('images', '66')
     fetch_epic_nasa_images(nasa_token, 'images')
@@ -25,8 +25,8 @@ if __name__ == '__main__':
     while True:
         random_image = random.choice(os.listdir('images'))
         with open(f'images\{random_image}', 'rb') as file:
-            bot.send_document(chat_id=chat_id, document=file)
-        bot.send_message(chat_id=chat_id, text="я дед инсайд, мне девять лет, я хочу в психо кидс")
-        time.sleep(int(time_sec))
+            bot.send_document(chat_id=telegram_chat_id, document=file)
+        bot.send_message(chat_id=telegram_chat_id, text="я дед инсайд, мне девять лет, я хочу в психо кидс")
+        time.sleep(int(seconds_delay))
 
 
