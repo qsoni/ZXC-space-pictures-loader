@@ -1,4 +1,4 @@
-from fetch_spacex import fetch_spacex_last_launch
+from fetch_spacex import fetch_spacex_launch
 from fetch_nasa import fetch_epic_nasa_images
 from fetch_nasa import fetch_nasa_images
 from pathlib import Path
@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
     bot = telegram.Bot(token=bot_id)
     Path("images").mkdir(parents=True, exist_ok=True)
-    fetch_spacex_last_launch('images')
+    fetch_spacex_launch('images', '66')
     fetch_epic_nasa_images(nasa_token, 'images')
     fetch_nasa_images(nasa_token, 'images')
 
