@@ -1,5 +1,5 @@
 import requests
-from install_image import install_image
+from install_image import download_image
 
 
 def fetch_epic_nasa_images(nasa_token, filepath):
@@ -16,7 +16,7 @@ def fetch_epic_nasa_images(nasa_token, filepath):
         url_image = epic_image['image']
         epic_url = f'https://api.nasa.gov/EPIC/archive/natural/{url_date}/png/{url_image}.png'
         epic_image['image']
-        install_image(epic_url, f'{filepath}/nasa_epic_photo{number}.jpeg', params)
+        download_image(epic_url, f'{filepath}/nasa_epic_photo{number}.jpeg', params)
 
 
 def fetch_nasa_images(nasa_token, filepath):
@@ -30,7 +30,7 @@ def fetch_nasa_images(nasa_token, filepath):
     response.raise_for_status()
     nasa = response.json()
     for number, launch in enumerate(nasa):
-        install_image(launch['url'], f'{filepath}/nasa_photo{number}.jpeg')
+        download_image(launch['url'], f'{filepath}/nasa_photo{number}.jpeg')
 
 
 

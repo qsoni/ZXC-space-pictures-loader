@@ -1,5 +1,5 @@
 import requests
-from install_image import install_image
+from install_image import download_image
 
 
 def fetch_spacex_launch(filepath, launch_number):
@@ -8,6 +8,6 @@ def fetch_spacex_launch(filepath, launch_number):
     response.raise_for_status()
     links = response.json()[launch_number]['links']['flickr_images']
     for number, launch in enumerate(links):
-        install_image(launch, f'{filepath}/spacex_photo{number}.jpeg')
+        download_image(launch, f'{filepath}/spacex_photo{number}.jpeg')
 
 
