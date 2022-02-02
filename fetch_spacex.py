@@ -3,7 +3,6 @@ from install_image import install_image
 
 
 def fetch_spacex_last_launch():
-    links_num = 0
     url = 'https://api.spacexdata.com/v3/launches'
     response = requests.get(url)
     response.raise_for_status()
