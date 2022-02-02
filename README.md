@@ -10,9 +10,9 @@ ID бота и телеграм канала, тоже нужно сложить
 Пример фала `.env`:
 ```
 NASA_TOKEN=jkdhfjKJHAkhdK8229HKJgk
-TIME_S=15
-BOT_ID=50235757541:KDHFLKSHFUQEYQUISHNDSA
-CHAT_ID=@deadinsidamsyda
+SECONDS_DELAY=15
+TELEGRAM_=50235757541:KDHFLKSHFUQEYQUISHNDSA
+TELEGRAM_CHAT_ID=@deadinsidamsyda
 ```
 Рекомендуется использовать [vetrualenv/venv](https://pypi.org/project/python-dotenv/0.9.1/) для изоляции проекта.
 
