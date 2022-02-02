@@ -18,9 +18,9 @@ if __name__ == '__main__':
 
     bot = telegram.Bot(token=bot_id)
     Path("images").mkdir(parents=True, exist_ok=True)
-    fetch_spacex_last_launch()
-    fetch_epic_nasa_images(nasa_token)
-    fetch_nasa_images(nasa_token)
+    fetch_spacex_last_launch('images')
+    fetch_epic_nasa_images(nasa_token, 'images')
+    fetch_nasa_images(nasa_token, 'images')
 
     while True:
         random_image = random.choice(os.listdir('images'))

@@ -2,7 +2,7 @@ import requests
 from install_image import install_image
 
 
-def fetch_epic_nasa_images(nasa_token):
+def fetch_epic_nasa_images(nasa_token, filepath):
     params = {
         'api_key': nasa_token
     }
@@ -16,11 +16,10 @@ def fetch_epic_nasa_images(nasa_token):
         url_image = epic_image['image']
         epic_url = f'https://api.nasa.gov/EPIC/archive/natural/{url_date}/png/{url_image}.png'
         epic_image['image']
-        filepath = f'images/nasa_epic_photo{number}.jpeg'
-        install_image(epic_url, filepath, params)
+        install_image(epic_url, f'{filepath}/nasa_epic_photo{number}.jpeg', params)
 
 
-def fetch_nasa_images(nasa_token):
+def fetch_nasa_images(nasa_token, filepath):
     params = {
         'thumbs': True,
         'count': '5',
@@ -31,8 +30,7 @@ def fetch_nasa_images(nasa_token):
     response.raise_for_status()
     nasa = response.json()
     for number, launch in enumerate(nasa):
-        filepath = f'images/nasa_photo{number}.jpeg'
-        install_image(launch['url'],filepath)
+        install_image(launch['url'], f'{filepath}/nasa_photo{number}.jpeg')
 
 
 
