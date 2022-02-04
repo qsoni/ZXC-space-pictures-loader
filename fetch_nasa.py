@@ -1,5 +1,5 @@
 import requests
-from install_image import download_image
+from download_image import download_image
 
 
 def fetch_epic_nasa_images(nasa_token, filepath):
@@ -15,7 +15,6 @@ def fetch_epic_nasa_images(nasa_token, filepath):
         url_date = epic_date.replace('-', '/')
         url_image = epic_image['image']
         epic_url = f'https://api.nasa.gov/EPIC/archive/natural/{url_date}/png/{url_image}.png'
-        epic_image['image']
         download_image(epic_url, f'{filepath}/nasa_epic_photo{number}.jpeg', params)
 
 

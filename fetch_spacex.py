@@ -1,5 +1,5 @@
 import requests
-from install_image import download_image
+from download_image import download_image
 
 
 def fetch_spacex_launch(filepath, launch_number):
