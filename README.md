@@ -10,7 +10,7 @@ ID бота и телеграм канала, тоже нужно сложить
 Пример фала `.env`:
 ```
 NASA_TOKEN=jkdhfjKJHAkhdK8229HKJgk
-SECONDS_DELAY=15
+DELAY=15
 TELEGRAM_=50235757541:KDHFLKSHFUQEYQUISHNDSA
 TELEGRAM_CHAT_ID=@deadinsidamsyda
 ```
